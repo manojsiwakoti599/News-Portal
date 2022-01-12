@@ -68,6 +68,8 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
+
+        {{-- Category And Subcategory --}}
         <li class="nav-item menu-items">
             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
                 aria-controls="ui-basic">
@@ -89,7 +91,7 @@
             </div>
 
 
-
+            {{-- District And Subdistric --}}
         <li class="nav-item menu-items">
             <a class="nav-link" data-bs-toggle="collapse" href="#district" aria-expanded="false"
                 aria-controls="dictrict">
@@ -109,7 +111,7 @@
                 </ul>
             </div>
         </li>
-
+        {{-- All Posts --}}
         <li class="nav-item menu-items">
             <a class="nav-link" data-bs-toggle="collapse" href="#post" aria-expanded="false" aria-controls="post">
                 <span class="menu-icon">
@@ -122,27 +124,94 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ route('create.post') }}">
                             Add Post </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('subdistrict') }}"> All Post
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('all.post') }}"> All Post
                         </a>
                     </li>
                 </ul>
             </div>
         </li>
 
+
+
+        {{-- Social, Sco, Prayer Settings --}}
         <li class="nav-item menu-items">
-            <a class="nav-link" data-bs-toggle="collapse" href="#photo" aria-expanded="false" aria-controls="photo">
+            <a class="nav-link" data-bs-toggle="collapse" href="#settings" aria-expanded="false"
+                aria-controls="settings">
+                <span class="menu-icon">
+                    <i class="mdi mdi-playlist-play"></i>
+                </span>
+                <span class="menu-title"> Settings </span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="settings">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('social.setting') }}">
+                            Social Settings </a>
+                    </li>
+                </ul>
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('seo.setting') }}"> Seo
+                            Settings </a>
+                    </li>
+                </ul>
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('prayer.setting') }}">
+                            Prayer Settings </a>
+                    </li>
+                </ul>
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('livetv.setting') }}"> Live
+                            Tv Settings </a>
+                    </li>
+                </ul>
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('notice.setting') }}">
+                            Notice Settings </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        {{-- Website Category --}}
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-bs-toggle="collapse" href="#website" aria-expanded="false"
+                aria-controls="website">
+                <span class="menu-icon">
+                    <i class="mdi mdi-playlist-play"></i>
+                </span>
+                <span class="menu-title"> Websites </span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="website">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('add.website') }}">
+                            Add Website </a>
+                    </li>
+                </ul>
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('all.website') }}">
+                            All Website </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        {{-- Gallery --}}
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-bs-toggle="collapse" href="#gallery" aria-expanded="false"
+                aria-controls="gallery">
                 <span class="menu-icon">
                     <i class="mdi mdi-security"></i>
                 </span>
                 <span class="menu-title"> Gallery </span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="photo">
+            <div class="collapse" id="gallery">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Photos </a>
-                        </li>
-                    <li class="nav-item"> <a class="nav-link" href="#"> Videos
+                        <a class="nav-link" href="{{ route('photo.gallery')}}">Photo Gallery </a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('video.gallery')}}"> Video Gallery
                         </a>
                     </li>
                 </ul>

@@ -112,8 +112,11 @@
 <script src="{{ asset('https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+        // let contentPasted = $('#summernote_en').summernote('code');
+        // let finalCOntent = contentPasted.replace(/>/g, '&gt;').replace(/</g, '&lt;')
         $('#summernote_nep').summernote({
         height: 150
+
         });
         $('#summernote_en').summernote({
         height: 150

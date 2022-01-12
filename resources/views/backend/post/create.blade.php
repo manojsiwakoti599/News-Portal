@@ -99,8 +99,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="formFileMultiple" class="form-label">Upload a News Images</label>
-                        <input class="form-control" name="image" type="file" id="formFileMultiple" multiple>
+                        <label for="image" class="form-label">Upload a News Images</label>
+                        <input class="form-control" name="image" type="file" id="image" multiple>
                       </div>
 
 

@@ -3,9 +3,14 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DistrictController;
+use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubDistrictController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\LanguageController;
+use App\Http\Controllers\Frontend\SinglePageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -30,10 +32,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 
-
 // Admin Logout
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
-
 
 
 // Admin Category All Routes
@@ -44,7 +44,6 @@ Route::get('/categories', [CategoryController::class, 'index'])->name('categorie
 Route::get('/add/category', [CategoryController::class, 'addCategory'])->name('add.category');
 
 
-
 // Store data in  Categories
 Route::post('/store/category', [CategoryController::class, 'storeCategory'])->name('store.category');
 
@@ -53,10 +52,8 @@ Route::post('/store/category', [CategoryController::class, 'storeCategory'])->na
 Route::get('/edit/category/{id}', [CategoryController::class, 'editCategory'])->name('edit.category');
 
 
-
 // Update data in  Categories
 Route::post('/update/category/{id}', [CategoryController::class, 'updateCategory'])->name('update.category');
-
 
 
 // Update data in  Categories
@@ -82,22 +79,18 @@ Route::post('/store/subcategories', [SubCategoryController::class, 'storeSubCate
 Route::get('/edit/subcategory/{id}', [SubCategoryController::class, 'editSubCategory'])->name('edit.subcategory');
 
 
-
 // Update data in  Categories
 Route::post('/update/subcategory/{id}', [SubCategoryController::class, 'updateSubCategory'])->name('update.subcategory');
-
 
 
 // Update data in  Categories
 Route::get('/delete/subcategory/{id}', [SubCategoryController::class, 'deleteSubCategory'])->name('delete.subcategory');
 
 
-
 // ----DISTRICT ROUTE------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Index for District
 Route::get('/district', [DistrictController::class, 'index'])->name('district');
-
 
 
 // create for District
@@ -120,9 +113,7 @@ Route::post('/update/district/{id}', [DistrictController::class, 'updateDistrict
 Route::get('/delete/district/{id}', [DistrictController::class, 'deleteDistrict'])->name('delete.district');
 
 
-
 // -----------------------------------SUBDISTRICT ROUTE--------------------------------------------------------------------------------------------------------------------
-
 
 
 // Index for SubDistrict
@@ -156,9 +147,6 @@ Route::get('/delete/subdistrict/{id}', [SubDistrictController::class, 'deleteSub
 Route::get('/createposts', [PostController::class, 'createPost'])->name('create.post');
 
 
-
-
-
 // using jQUery to fetch the data from caregory_id
 Route::get('/get/subcategory/{category_id}', [PostController::class, 'getSubCategory']);
 
@@ -167,8 +155,166 @@ Route::get('/get/subcategory/{category_id}', [PostController::class, 'getSubCate
 Route::get('/get/subdistrict/{district_id}', [PostController::class, 'getSubDistrict']);
 
 
-
 // Store data in  POSTS
 Route::post('/store/post', [PostController::class, 'storePost'])->name('store.post');
 
+
+// index all  POSTS
+Route::get('/allpost', [PostController::class, 'index'])->name('all.post');
+
+
+// edit  POST
+Route::get('/edit/post/{id}', [PostController::class, 'editPost'])->name('edit.post');
+
+
+// Update  POST
+Route::post('/update/post/{id}', [PostController::class, 'updatePost'])->name('update.post');
+
+
+// DELETE  POST
+Route::get('/delete/post/{id}', [PostController::class, 'deletePost'])->name('delete.post');
+
+
+//----------------------------SOCIAL SETTINGS-----------------------------------------------------------------------------------------------------------------------
+
+//  Edit social settings
+Route::get('/social/setting', [SettingController::class, 'socialSetting'])->name('social.setting');
+
+
+//  uodate social settings
+Route::post('/update/social-setting/{id}', [SettingController::class, 'updateSocial'])->name('update.social');
+
+
+
+//  Edit Seo settings
+Route::get('/seo/setting', [SettingController::class, 'seoSetting'])->name('seo.setting');
+
+
+
+//  update Seo settings
+Route::post('/update/seo-setting/{id}', [SettingController::class, 'updateSeo'])->name('update.seo');
+
+
+//   Prayer settings
+Route::get('/prayer/setting', [SettingController::class, 'prayerSetting'])->name('prayer.setting');
+
+
+//  update Prayer settings
+Route::post('/update/prayer/{id}', [SettingController::class, 'updatePrayer'])->name('update.prayer');
+
+
+//   Live Tv  settings
+Route::get('/livetv/setting', [SettingController::class, 'liveTvSetting'])->name('livetv.setting');
+
+
+//  update Live Tv settings
+Route::post('/update/livetv/{id}', [SettingController::class, 'updateLiveTv'])->name('update.livetv');
+
+
+// Active  Live Tv  settings
+Route::get('/activate/livetv/{id}', [SettingController::class, 'activeLiveTv'])->name('active.livetv');
+
+
+//  Deactive Live Tv settings
+Route::get('/deactive/livetv/{id}', [SettingController::class, 'deactiveLiveTv'])->name('deactive.livetv');
+
+
+//  Edit Notice  settings
+Route::get('/notice/setting', [SettingController::class, 'noticeSetting'])->name('notice.setting');
+
+
+//  update Live Tv settings
+Route::post('/update/notice/{id}', [SettingController::class, 'updateNotice'])->name('update.notice');
+
+
+// Active  Notification  settings
+Route::get('/activate/notice/{id}', [SettingController::class, 'activeNotice'])->name('active.notice');
+
+
+//  Deactive Notification settings
+Route::get('/deactive/notice/{id}', [SettingController::class, 'deactiveNotice'])->name('deactive.notice');
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+//  Index Website  settings
+Route::get('/website/setting', [SettingController::class, 'websiteSetting'])->name('all.website');
+
+
+//  Add Website  settings
+Route::get('/add/website/links', [SettingController::class, 'addWebsiteLink'])->name('add.website');
+
+
+//  srore Website  settings
+Route::post('/store/website', [SettingController::class, 'StoreWebsiteLink'])->name('store.website');
+
+
+//  Ediit Website  settings
+Route::get('/edit/website/{id}', [SettingController::class, 'editeWebsiteLink'])->name('edit.website');
+
+
+//  Update Website  settings
+Route::post('/update/website/{id}', [SettingController::class, 'updateWebsiteLink'])->name('update.website');
+
+
+
+// DELETE  POST
+Route::get('/delete/website/{id}', [SettingController::class, 'deleteWebsite'])->name('delete.website');
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+//  Index Photo Gallery
+Route::get('/photo/gallery/', [GalleryController::class, 'photoGallery'])->name('photo.gallery');
+
+
+// Add Photo in Photo Gallery
+Route::get('/add/photo/', [GalleryController::class, 'Addphoto'])->name('add.photo');
+
+
+// Store Photo in Photo Gallery
+Route::post('/store/photo/', [GalleryController::class, 'storePhoto'])->name('store.photo');
+
+
+// Edit Photo in Photo Gallery
+Route::get('/edit/photo/{id}', [GalleryController::class, 'editPhoto'])->name('edit.photo');
+
+
+// Update Photo in Photo Gallery
+Route::post('/update/photo/{id}', [GalleryController::class, 'updatePhoto'])->name('update.photo');
+
+
+// Delete Photo in Photo Gallery
+Route::get('/delete/photo/{id}', [GalleryController::class, 'deletePhoto'])->name('delete.photo');
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
+// Index For Video Gallery
+Route::get('/video/gallery/', [GalleryController::class, 'videoGallery'])->name('video.gallery');
+
+
+// Add video in video Gallery
+Route::get('/add/video/', [GalleryController::class, 'AddVideo'])->name('add.video');
+
+
+// Store Video in Video Gallery
+Route::post('/store/video/', [GalleryController::class, 'storeVideo'])->name('store.video');
+
+
+// Store Video in Video Gallery
+Route::get('/edit/video/{id}', [GalleryController::class, 'editVideo'])->name('edit.video');
+
+
+// Update a Video in Video Gallery.
+Route::post('/update/video/{id}', [GalleryController::class, 'updateVideo'])->name('update.video');
+
+
+// Delete Photo in Photo Gallery
+Route::get('/delete/video/{id}', [GalleryController::class, 'deleteVideo'])->name('delete.video');
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+// FRONTEND MULTI LANGUAGE ROUTE
+Route::get('/lang/english', [LanguageController::class, 'LangEnglish'])->name('lang.english');
+Route::get('/lang/nepali', [LanguageController::class, 'LangNepali'])->name('lang.nepali');
+
+
+// Single Page Route
+Route::get('/view/post/{id}', [SinglePageController::class, 'singlePage']);
+
+// category Links
+Route::get('/category-post/{id}/{category_en}', [SinglePageController::class, 'categoryPost']);
 

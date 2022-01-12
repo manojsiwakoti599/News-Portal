@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class District extends Model
 {
     use HasFactory;
-
-    public function subcategories(){
-        return $this->hasMany(SubCategory::class, 'category_id');
+    public function subdistricts(){
+        return $this->hasMany(SubDistrict::class, 'district_id');
     }
 }

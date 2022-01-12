@@ -31,26 +31,26 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Add Category</h4>
-                    <form class="forms-sample" method="POST" action="{{ route('store.category') }}">
+                    <h4 class="card-title"> Update Websites </h4>
+                    <form class="forms-sample" method="POST" action="{{ route('update.website',$website->id) }}">
                         @csrf
                         <div class="form-group text-white">
-                            <label for="category_en">Category English</label>
-                            <input type="text" class="form-control" name="category_en" placeholder="Category Englist">
-                            @error('category_en')
+                            <label for="">Website Name</label>
+                            <input type="text" class="form-control" name="website_name" value="{{ $website->website_name }}">
+                            @error('website_name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
 
                         <div class="form-group text-white">
-                            <label for="category_nep">Category Nepali</label>
-                            <input type="text" class="form-control" name="category_nep" placeholder="Category Nepali">
-                            @error('category_nep')
+                            <label for="">Website Links </label>
+                            <input type="text" class="form-control" name="website_link" value="{{ $website->website_link}}">
+                            @error('website_link')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary me-2">Create</button>
+                        <button type="submit" class="btn btn-primary me-2">Update</button>
                     </form>
                 </div>
             </div>
